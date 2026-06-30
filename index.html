@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم عصافير الزينة</title>
+    <style>
+        /* تنسيقات عامة للموقع */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        /* الهيدر (رأس الصفحة) */
+        header {
+            background: linear-gradient(135deg, #2e7d32, #81c784);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* القائمة الرئيسية لللإنتقال السريع */
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            display: inline-block;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #4caf50;
+        }
+
+        /* الحاوية الرئيسية المحتوى */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* الأقسام الخاصة بكل نوع */
+        .bird-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            transition: transform 0.3s;
+        }
+
+        .bird-section:hover {
+            transform: translateY(-5px);
+        }
+
+        /* تنسيق الصور */
+        .bird-img {
+            flex: 1;
+            min-width: 300px;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .bird-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* تنسيق النصوص والمعلومات */
+        .bird-info {
+            flex: 1.5;
+            padding: 30px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bird-info h2 {
+            color: #2e7d32;
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .bird-info p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* قائمة الصفات */
+        .features {
+            margin-top: 15px;
+            padding-right: 20px;
+        }
+
+        .features li {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        /* الفوتر (أسفل الصفحة) */
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- رأس الصفحة -->
+    <header>
+        <h1>عالم عصافير الزينة</h1>
+        <p>دليلك الشامل لأجمل وأبرز أنواع طيور الزينة في العالم</p>
+    </header>
+
+    <!-- قائمة التنقل السريع بين الأقسام -->
+    <nav>
+        <a href="#budgie">طائر البادجي</a>
+        <a href="#canary">طائر الكناري</a>
+        <a href="#zebra">عصفور الزيبرا</a>
+        <a href="#lovebird">طيور الحب (الروز والفيشر)</a>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+
+        <!-- قسم طائر البادجي -->
+        <section id="budgie" class="bird-section">
+            <div class="bird-img">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt="طائر البادجي الأسترالي">
+            </div>
+            <div class="bird-info">
+                <h2>1. طائر البادجي (الدرة الأسترالي)</h2>
+                <p>يعتبر البادجي من أشهر طيور الزينة وأكثرها انتشاراً في العالم نظراً لسهولة تربيته وألوانه المبهجة والمتنوعة وسعره المناسب. هو طائر ذكي جداً ونشيط ويمتلك قدرة (في بعض الأحيان) على تقليد بعض الكلمات إذا تم تدريبه منذ الصغر.</p>
+                <ul class="features">
+                    <li><strong>الموطن الأصلي:</strong> أستراليا.</li>
+                    <li><strong>الألوان:</strong> الأخضر، الأزرق، الأصفر، الأبيض، والرمادي.</li>
+                    <li><strong>متوسط العمر:</strong> من 5 إلى 10 سنوات.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- قسم طائر الكناري -->
+        <section id="canary" class="bird-section">
+            <div class="bird-info">
+                <h2>2. طائر الكناري</h2>
+                <p>يشتهر طائر الكناري بصوته العذب وتغريده الساحر الذي يملأ المكان بهجة. يفضّل المربون اقتناء الذكور منه خصيصاً لأنها هي من تقوم بالتغريد بشكل أساسي وجذاب لجذب الإناث.</p>
+                <ul class="features">
+                    <li><strong>الموطن الأصلي:</strong> جزر الكناري.</li>
+                    <li><strong>الألوان:</strong> الأصفر الزاهي، البرتقالي، والأبيض.</li>
+                    <li><strong>الميزة الأساسية:</strong> التغريد العذب والصوت الجميل.</li>
+                </ul>
+            </div>
+            <div class="bird-img">
+                <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&w=600&q=80" alt="طائر الكناري">
+            </div>
+        </section>
+
+        <!-- قسم عصفور الزيبرا -->
+        <section id="zebra" class="bird-section">
+            <div class="bird-img">
+                <img src="https://images.unsplash.com/photo-1522850959074-b78b5f345cd4?auto=format&fit=crop&w=600&q=80" alt="عصفور الزيبرا">
+            </div>
+            <div class="bird-info">
+                <h2>3. عصفور الزيبرا (الزيبرا فينش)</h2>
+                <p>طيور صغيرة الحجم، رشيقة جداً وسريعة الحركة. سُميت بهذا الاسم لوجود خطوط سوداء وبيضاء على صدرها تشبه خطوط حيوان الحمار الوحشي. هي طيور اجتماعية للغاية وتفضل العيش في جماعات أو أزواج، وصوت زقزقتها خفيف ولطيف.</p>
+                <ul class="features">
+                    <li><strong>الموطن الأصلي:</strong> أستراليا وإندونيسيا.</li>
+                    <li><strong>الحجم:</strong> صغير جداً مقارنة بباقي الطيور.</li>
+                    <li><strong>الطباع:</strong> نشيطة جداً وتحب الحركة الدائمة.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- قسم طيور الحب -->
+        <section id="lovebird" class="bird-section">
+            <div class="bird-info">
+                <h2>4. طيور الحب (الروز والفيشر)</h2>
+                <p>تسمى بطيور الحب لارتباط الزوجين ببعضهما ارتباطاً وثيقاً مدى الحياة، حيث يقضيان معظم الوقت في تنظيف ريش بعضهما. تنتمي لفصيلة الببغاوات الصغيرة، وتتميز بفضولها الشديد وألوانها الرائعة، لكن صوتها قد يكون حاداً ومرتفعاً بعض الشيء.</p>
+                <ul class="features">
+                    <li><strong>الموطن الأصلي:</strong> قارة أفريقيا.</li>
+                    <li><strong>الأنواع الشائعة:</strong> الروز (وجه الخوخ) والفيشر.</li>
+                    <li><strong>السلوك:</strong> تحتاج إلى ألعاب ومساحة للطيران لذكائها العالي.</li>
+                </ul>
+            </div>
+            <div class="bird-img">
+                <img src="https://images.unsplash.com/photo-1548685913-fe6574340a49?auto=format&fit=crop&w=600&q=80" alt="طيور الحب">
+            </div>
+        </section>
+
+    </div>
+
+    <!-- أسفل الصفحة -->
+    <footer>
+        <p>جميع الحقوق محفوظة © عالم عصافير الزينة 2026</p>
+    </footer>
+
+</body>
+</html>
