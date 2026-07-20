@@ -7,15 +7,17 @@
     <!-- خطوط جوجل اللطيفة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0b132b;
-            --card-bg: #1c2541;
-            --accent-gold: #6fffe9; /* لون مضيء ساحر */
-            --text-gold: #ffd700;
-            --text-light: #f4f4f9;
+            --bg-gradient: linear-gradient(135deg, #fff5f5 0%, #f0f4ff 100%);
+            --card-bg: #ffffff;
+            --accent-pink: #ff758f;
+            --accent-blue: #7091e6;
+            --text-dark: #3d3d3d;
+            --text-muted: #7d7d7d;
+            --text-gold: #d4a373;
         }
 
         * {
@@ -26,18 +28,20 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-light);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-dark);
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
         }
 
         h1, h2, h3 {
             font-family: 'Reem Kufi', sans-serif;
-            color: var(--text-gold);
+            color: var(--accent-pink);
+            font-weight: 600;
         }
 
-        /* شاشة الترحيب */
+        /* شاشة الترحيب الناعمة */
         .hero {
             height: 100vh;
             display: flex;
@@ -45,58 +49,124 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle, #1c2541 0%, #0b132b 100%);
             padding: 20px;
             position: relative;
+            animation: fadeInScene 1.5s ease-out;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            text-shadow: 2px 2px 8px rgba(255, 117, 143, 0.15);
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             max-width: 600px;
-            opacity: 0.8;
-            animation: fadeIn 3s ease-in-out;
+            color: var(--text-dark);
+            opacity: 0.9;
+            line-height: 1.8;
         }
 
-        /* العداد الحي */
+        /* العداد الحي اللطيف */
         .counter-section {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            background: #111a36;
+        }
+
+        .counter-section h2 {
+            color: var(--accent-blue);
+            margin-bottom: 10px;
         }
 
         .counter-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         .counter-box {
             background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            min-width: 100px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 20px;
+            min-width: 120px;
+            box-shadow: 0 10px 30px rgba(112, 145, 230, 0.1);
+            border: 1px solid rgba(112, 145, 230, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 4s ease-in-out infinite alternate;
+        }
+
+        .counter-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 117, 143, 0.2);
         }
 
         .counter-box span {
             display: block;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            font-family: 'Reem Kufi', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        /* قسم تواريخ تهمنا الجديد */
+        .important-dates-section {
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .dates-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 40px auto 0;
+        }
+
+        .date-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            width: 280px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            border-top: 5px solid var(--accent-pink);
+            transition: all 0.3s ease;
+        }
+
+        .date-card.boy {
+            border-top-color: var(--accent-blue);
+        }
+
+        .date-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .date-icon {
             font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .date-value {
+            font-size: 1.3rem;
             font-weight: bold;
-            color: var(--accent-gold);
+            color: var(--text-dark);
+            margin-top: 10px;
+            background: #f7f9fc;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
         }
 
         /* الخط الزمني والذكريات */
         .timeline-section {
-            padding: 80px 20px;
+            padding: 90px 20px;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -109,8 +179,8 @@
 
         .timeline {
             position: relative;
-            border-right: 3px solid var(--text-gold);
-            padding-right: 30px;
+            border-right: 3px solid var(--accent-pink);
+            padding-right: 35px;
             margin-right: 20px;
         }
 
@@ -118,95 +188,32 @@
             position: relative;
             margin-bottom: 50px;
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
         }
 
         .timeline-item:hover {
             transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 117, 143, 0.1);
         }
 
         .timeline-item::after {
-            content: '✨';
+            content: '🌸';
             position: absolute;
-            right: -45px;
-            top: 25px;
-            background: var(--bg-color);
+            right: -52px;
+            top: 32px;
             font-size: 1.2rem;
+            animation: pulseSoft 2s infinite;
         }
 
         .timeline-date {
-            color: var(--accent-gold);
+            color: var(--accent-blue);
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1.1rem;
-        }
-
-        /* رسائل بنحبها */
-        .messages-section {
-            padding: 80px 20px;
-            background: #0f1833;
-            text-align: center;
-        }
-
-        .messages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: 40px auto 0;
-        }
-
-        .msg-card {
-            background: linear-gradient(145deg, #1c2541, #151b30);
-            padding: 30px;
-            border-radius: 20px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 4px solid var(--text-gold);
-        }
-
-        .msg-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(111, 255, 233, 0.2);
-        }
-
-        .msg-card p {
-            font-style: italic;
-            line-height: 1.8;
-        }
-
-        .msg-author {
-            margin-top: 15px;
-            display: block;
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-        }
-
-        /* كبسولة الزمن */
-        .capsule-section {
-            padding: 80px 20px;
-            text-align: center;
-            background: radial-gradient(circle, #151b30 0%, #0b132b 100%);
-        }
-
-        .capsule-card {
-            background: var(--card-bg);
-            max-width: 500px;
-            margin: 30px auto;
-            padding: 40px;
-            border-radius: 20px;
-            border: 2px dashed var(--text-gold);
-        }
-
-        .lock-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: pulse 2s infinite;
         }
 
         /* إحصائيات لطيفة */
@@ -214,9 +221,9 @@
             padding: 60px 20px;
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
-            background: #111a36;
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .stat-item {
@@ -224,31 +231,104 @@
         }
 
         .stat-number {
-            font-size: 3rem;
-            color: var(--text-gold);
+            font-size: 3.2rem;
+            color: var(--accent-pink);
             font-weight: bold;
             display: block;
+            font-family: 'Reem Kufi', sans-serif;
         }
 
-        /* تأثيرات الأنميشن */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        /* رسائل بنحبها */
+        .messages-section {
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .msg-card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+            border-bottom: 5px solid var(--accent-pink);
+        }
+
+        .msg-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 117, 143, 0.15);
+        }
+
+        .msg-card p {
+            font-style: italic;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .msg-author {
+            margin-top: 20px;
+            display: block;
+            font-size: 0.95rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* كبسولة الزمن */
+        .capsule-section {
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+        .capsule-card {
+            background: var(--card-bg);
+            max-width: 550px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px dashed var(--accent-pink);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .lock-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* تأثيرات الأنيميشن الناعمة والهادئة */
+        @keyframes fadeInScene {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+
+        @keyframes pulseSoft {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.9; }
         }
 
         /* تذييل الصفحة */
         footer {
-            padding: 30px;
+            padding: 40px;
             text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            background: #ffffff;
         }
     </style>
 </head>
@@ -256,31 +336,58 @@
 
     <!-- 1. شاشة المقدمة -->
     <section class="hero">
-        <h1>حكايتنا الحلوة ✨</h1>
+        <h1>عالمنا الخاص ✨</h1>
         <p>المكان ده معمول مخصوص عشان يجمع كل تفصيلة، كلمة، وذكرى عشناها سوا.. ومفيش حد في العالم يقدر يشوفه غيرنا.</p>
-        <p style="margin-top: 30px; font-size: 1.1rem; color: var(--accent-gold);">👇 انزلي تحت وشوفي السحر</p>
+        <p style="margin-top: 35px; font-size: 1.1rem; color: var(--accent-pink); font-weight: bold;">👇 انزلي تحت وشوفي السحر</p>
     </section>
 
-    <!-- 2. العداد الحي -->
+    <!-- 2. العداد الحي (وقت معرفة فثعن وفثعونه) -->
     <section class="counter-section">
-        <h2>الوقت اللي عديناه سوا 💕</h2>
-        <p style="opacity: 0.7; margin-top: 10px;">كل ثانية وأنتِ معايا ليها طعم تاني</p>
+        <h2>وقت معرفة فثعن وفثعونه 💕</h2>
+        <p style="color: var(--text-muted); margin-top: 10px; font-size: 1.1rem;">كل ثانية وأنتِ معايا ليها طعم تاني</p>
         <div class="counter-container">
-            <div class="counter-box"><span id="days">0</span>أيام</div>
-            <div class="counter-box"><span id="hours">0</span>ساعات</div>
-            <div class="counter-box"><span id="minutes">0</span>دقائق</div>
-            <div class="counter-box"><span id="seconds">0</span>ثواني</div>
+            <div class="counter-box" style="animation-delay: 0s;"><span id="days">0</span>أيام</div>
+            <div class="counter-box" style="animation-delay: 0.2s;"><span id="hours">0</span>ساعات</div>
+            <div class="counter-box" style="animation-delay: 0.4s;"><span id="minutes">0</span>دقائق</div>
+            <div class="counter-box" style="animation-delay: 0.6s;"><span id="seconds">0</span>ثواني</div>
         </div>
     </section>
 
-    <!-- 3. الخط الزمني والتواريخ -->
+    <!-- 3. قسم تواريخ تهمنا (الجديد) -->
+    <section class="important-dates-section">
+        <h2>تواريخ تهمنا 📅</h2>
+        <p style="color: var(--text-muted); margin-top: 10px;">أيام مميزة غيرت شكل أيامنا</p>
+        <div class="dates-container">
+            
+            <div class="date-card">
+                <div class="date-icon">🎂👑</div>
+                <h3>عيد ميلاد فثعونه</h3>
+                <div class="date-value">1 / 1 / 2008</div>
+            </div>
+
+            <div class="date-card boy">
+                <div class="date-icon">🎂✨</div>
+                <h3>عيد ميلاد فثعن</h3>
+                <div class="date-value">8 / 10 / 2008</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. الخط الزمني والذكريات -->
     <section class="timeline-section">
-        <h2 class="timeline-title">محطات مش هنساها 📅</h2>
+        <h2 class="timeline-title">محطات مش هنساها 🌸</h2>
         <div class="timeline">
             
             <div class="timeline-item">
+                <div class="timeline-date">٣ أكتوبر ٢٠٢٤</div>
+                <h3>بداية حكايتنا اللطيفة 🌟</h3>
+                <p>اليوم السحري اللي اتعرفنا فيه على بعض وبدأت فيه أول خطوة في طريقنا المشترك.</p>
+            </div>
+
+            <div class="timeline-item">
                 <div class="timeline-date">٢٥ فبراير ٢٠٢٥</div>
-                <h3>أول مرة اتقابلنا 🌸</h3>
+                <h3>أول مقابلة 🌸</h3>
                 <p>اليوم اللي الدنيا ضحكتلي فيه وشوفتك لأول مرة، ومن اللحظة دي عرفت إن حياتي هتبقى أحلى بكتير.</p>
             </div>
 
@@ -290,16 +397,10 @@
                 <p>اليوم اللي نبضات قلبي فيه كانت مسموعة من كتر التوتر، واليوم اللي بدأنا فيه نكتب أول السطور في حكايتنا.</p>
             </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">١ يونيو ٢٠٢٥</div>
-                <h3>أول خروجة وموقف مضحك 🍕</h3>
-                <p>لما كنا بنأكل وفجأة حصل الموقف اللي فضلنا نضحك عليه طول اليوم.. تفاصيلك الصغيرة هي اللي مخلية قلبي متعلق بيكِ.</p>
-            </div>
-
         </div>
     </section>
 
-    <!-- 4. قسم الإحصائيات الطريفة -->
+    <!-- 5. قسم الإحصائيات الطريفة -->
     <section class="stats-section">
         <div class="stat-item">
             <span class="stat-number">∞</span>
@@ -315,10 +416,10 @@
         </div>
     </section>
 
-    <!-- 5. قسم الرسائل المفضلة -->
+    <!-- 6. قسم الرسائل المفضلة -->
     <section class="messages-section">
         <h2>ماسدجات بنحبها وكلام من القلب 💬</h2>
-        <p style="opacity: 0.7; margin-bottom: 20px;">كلامك دايماً كان بيهون عليا أي حاجة صعبة</p>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">كلامك دايماً كان بيهون عليا أي حاجة صعبة</p>
         <div class="messages-grid">
             
             <div class="msg-card">
@@ -326,27 +427,27 @@
                 <span class="msg-author">— رسالة منها شيلتها في قلبي</span>
             </div>
 
-            <div class="msg-card">
+            <div class="msg-card" style="border-bottom-color: var(--accent-blue);">
                 <p>"وجودك معايا بيخليني أحس إن العالم كله بخير، ومفيش أي حاجة تقدر تزعلني وأنتِ في ضهري."</p>
-                <span class="msg-author">— رسالة مني ليها</span>
+                <span class="msg-author" style="color: var(--accent-pink);">— رسالة مني ليها</span>
             </div>
 
             <div class="msg-card">
                 <p>"لو لفيت الدنيا دي كلها مش هلاقي حد يفهمني من عيني ومن نبرة صوتي زيك أنتِ."</p>
-                <span class="msg-author">— لحظة صفاء وسط اليوم</span >
+                <span class="msg-author">— لحظة صفاء وسط اليوم</span>
             </div>
 
         </div>
     </section>
 
-    <!-- 6. كبسولة الزمن المستقبلية -->
+    <!-- 7. كبسولة الزمن المستقبلية -->
     <section class="capsule-section">
         <h2>كبسولة الزمن 🔒</h2>
         <div class="capsule-card">
-            <span class="lock-icon">🔒</span>
-            <h3>الرسالة السرية</h3>
-            <p id="capsule-text" style="margin-top: 15px; opacity: 0.8; font-style: italic;">الرسالة دي مقفولة دلوقتي.. ومفيش حد هيقدر يفتحها غير يوم عيد ميلادك الجاي عشان تشوفي كنت كاتبلك إيه هنا! 😉</p>
-            <div id="capsule-timer" style="margin-top: 20px; font-weight: bold; color: var(--text-gold);"></div>
+            <span class="lock-icon" style="animation: pulseSoft 2s infinite;">🔒</span>
+            <h3 style="color: var(--accent-pink);">الرسالة السرية</h3>
+            <p id="capsule-text" style="margin-top: 15px; color: var(--text-dark); opacity: 0.8; font-style: italic; line-height: 1.8;">الرسالة دي مقفولة دلوقتي.. ومفيش حد هيقدر يفتحها غير يوم عيد ميلادها الجاي عشان تشوفي كنت كاتبلك إيه هنا! 😉</p>
+            <div id="capsule-timer" style="margin-top: 20px; font-weight: bold; color: var(--accent-blue);"></div>
         </div>
     </section>
 
@@ -357,9 +458,9 @@
 
     <!-- السكريبتات الذكية للعداد وكبسولة الزمن -->
     <script>
-        // ١. إعداد تاريخ بداية الارتباط (تعديل الأرقام هنا: السنة، الشهر ناقص ١، اليوم)
-        // مثال: 25 فبراير 2025 -> (2025, 1, 25) لأن شهر يناير هو 0 وفبراير هو 1
-        const startDate = new Date(2025, 1, 25, 0, 0, 0);
+        // تاريخ معرفة فثعن وفثعونه المظبوط: 3 أكتوبر 2024
+        // (شهر أكتوبر هو رقم 9 في الجافا سكريبت لأن الترقيم يبدأ من صفر)
+        const startDate = new Date(2024, 9, 3, 0, 0, 0);
 
         function updateLoveCounter() {
             const now = new Date();
@@ -379,8 +480,7 @@
         updateLoveCounter();
 
 
-        // ٢. إعداد كبسولة الزمن لتاريخ مستقبلي (مثلاً أول السنة الجديدة أو عيد ميلادها)
-        // غير التاريخ ده ليوم عيد ميلادها القادم (سنة، شهر ناقص ١، يوم)
+        // إعداد كبسولة الزمن لعيد ميلادها القادم (1 يناير 2027)
         const targetFutureDate = new Date(2027, 0, 1, 0, 0, 0); 
 
         function updateCapsuleTimer() {
@@ -388,14 +488,13 @@
             const difference = targetFutureDate - now;
 
             if (difference <= 0) {
-                // الرسالة تفتح تلقائياً لما التاريخ ييجي!
                 document.querySelector('.lock-icon').innerText = "🔓";
-                document.getElementById('capsule-text').innerText = "كل سنة وأنتِ منورة حياتي! هنا حط الرسالة الطويلة اللي نفسك تقرأها في اليوم ده.. أنا بحبك أوي وفخور بكل يوم بنعديه سوا وسند لبعض.";
+                document.getElementById('capsule-text').innerText = "كل سنة وأنتِ منورة حياتي يا فثعونه! هنا حط الرسالة الطويلة اللي نفسك تقرأها في اليوم ده.. أنا بحبك أوي وفخور بكل يوم بنعديه سوا وسند لبعض.";
                 document.getElementById('capsule-timer').style.display = 'none';
             } else {
                 const days = Math.floor(difference / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('capsule-timer').innerText = `باقي ${days} يوم و ${hours} ساعة على فتح الرسالة!`;
+                document.getElementById('capsule-timer').innerText = `باقي ${days} يوم و ${hours} ساعة على فتح الرسالة السرية!`;
             }
         }
         setInterval(updateCapsuleTimer, 1000);
