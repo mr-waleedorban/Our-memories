@@ -3,307 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موسوعة عصافير الزينة التفاعلية</title>
+    <title>عالمنا الخاص ✨</title>
+    <!-- خطوط جوجل اللطيفة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: #f0f4f1; color: #2c3e50; }
-        header { background: linear-gradient(135deg, #1b5e20, #4caf50); color: white; text-align: center; padding: 30px 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        header h1 { margin: 0; font-size: 2.2rem; }
-        .audio-box { margin-top: 15px; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px; display: inline-block; }
-        
-        /* تقسيم الصفحة الجانبي أو العلوي للأقسام */
-        .wrapper { max-width: 1100px; margin: 30px auto; padding: 0 15px; display: flex; flex-wrap: wrap; gap: 20px; }
-        
-        /* قائمة الأقسام (الأزرار) */
-        .tabs-menu { flex: 1; min-width: 250px; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); height: fit-content; }
-        .tabs-menu h3 { margin-top: 0; color: #1b5e20; border-bottom: 2px solid #edf2f7; padding-bottom: 10px; text-align: center; }
-        .tab-btn { width: 100%; background: #f8faf9; border: 1px solid #e2e8f0; padding: 12px; text-align: right; margin-bottom: 8px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: bold; color: #4a5568; transition: 0.3s; }
-        .tab-btn:hover { background: #e8f5e9; color: #1b5e20; }
-        .tab-btn.active { background: #4caf50; color: white; border-color: #4caf50; box-shadow: 0 4px 8px rgba(76,175,80,0.3); }
+        :root {
+            --bg-color: #0b132b;
+            --card-bg: #1c2541;
+            --accent-gold: #6fffe9; /* لون مضيء ساحر */
+            --text-gold: #ffd700;
+            --text-light: #f4f4f9;
+        }
 
-        /* منطقة العرض الخاصة بكل قسم */
-        .display-panel { flex: 2.5; min-width: 320px; }
-        .bird-section { background: white; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.08); overflow: hidden; display: none; border-top: 6px solid #4caf50; }
-        .bird-section.active { display: block; animation: fadeIn 0.5s ease; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-        .bird-img { width: 100%; height: 350px; }
-        .bird-img img { width: 100%; height: 100%; object-fit: cover; }
-        .bird-content { padding: 30px; }
-        .bird-content h2 { color: #1b5e20; margin-top: 0; font-size: 1.8rem; }
-        .bird-content p { line-height: 1.8; color: #4a5568; font-size: 1.05rem; }
-        
-        .info-table { width: 100%; margin-top: 20px; border-collapse: collapse; background: #f9fbf9; border-radius: 8px; overflow: hidden; }
-        .info-table td { padding: 12px 15px; border-bottom: 1px solid #edf2f7; }
-        .info-table td.title { font-weight: bold; color: #2c3e50; width: 30%; background: #edf5ed; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+        }
 
+        h1, h2, h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--text-gold);
+        }
+
+        /* شاشة الترحيب */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #1c2541 0%, #0b132b 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            opacity: 0.8;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        /* العداد الحي */
+        .counter-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: #111a36;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .counter-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 100px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .counter-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+
+        /* الخط الزمني والذكريات */
+        .timeline-section {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            border-right: 3px solid var(--text-gold);
+            padding-right: 30px;
+            margin-right: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.02);
+        }
+
+        .timeline-item::after {
+            content: '✨';
+            position: absolute;
+            right: -45px;
+            top: 25px;
+            background: var(--bg-color);
+            font-size: 1.2rem;
+        }
+
+        .timeline-date {
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* رسائل بنحبها */
+        .messages-section {
+            padding: 80px 20px;
+            background: #0f1833;
+            text-align: center;
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .msg-card {
+            background: linear-gradient(145deg, #1c2541, #151b30);
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid var(--text-gold);
+        }
+
+        .msg-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(111, 255, 233, 0.2);
+        }
+
+        .msg-card p {
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .msg-author {
+            margin-top: 15px;
+            display: block;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+        }
+
+        /* كبسولة الزمن */
+        .capsule-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle, #151b30 0%, #0b132b 100%);
+        }
+
+        .capsule-card {
+            background: var(--card-bg);
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px dashed var(--text-gold);
+        }
+
+        .lock-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        /* إحصائيات لطيفة */
+        .stats-section {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: #111a36;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--text-gold);
+            font-weight: bold;
+            display: block;
+        }
+
+        /* تأثيرات الأنميشن */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-        @media (max-width: 768px) { .wrapper { flex-direction: column; } .bird-img { height: 230px; } }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* تذييل الصفحة */
+        footer {
+            padding: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>الموسوعة التفاعلية لعصافير الزينة</h1>
-        <p>اختر نوع الطائر من القائمة الجانبية لاستكشاف معلوماته وصوره بشكل مستقل</p>
-        <div class="audio-box">
-            <span style="font-size: 0.9rem; display:block; margin-bottom:5px;">🎵 اضغط تشغيل لسماع صوت الطيور الحقيقي:</span>
-            <audio controls loop style="height:30px;"><source src="https://www.soundjay.com/nature/sounds/canary-singing-01.mp3" type="audio/mpeg"></audio>
+    <!-- 1. شاشة المقدمة -->
+    <section class="hero">
+        <h1>حكايتنا الحلوة ✨</h1>
+        <p>المكان ده معمول مخصوص عشان يجمع كل تفصيلة، كلمة، وذكرى عشناها سوا.. ومفيش حد في العالم يقدر يشوفه غيرنا.</p>
+        <p style="margin-top: 30px; font-size: 1.1rem; color: var(--accent-gold);">👇 انزلي تحت وشوفي السحر</p>
+    </section>
+
+    <!-- 2. العداد الحي -->
+    <section class="counter-section">
+        <h2>الوقت اللي عديناه سوا 💕</h2>
+        <p style="opacity: 0.7; margin-top: 10px;">كل ثانية وأنتِ معايا ليها طعم تاني</p>
+        <div class="counter-container">
+            <div class="counter-box"><span id="days">0</span>أيام</div>
+            <div class="counter-box"><span id="hours">0</span>ساعات</div>
+            <div class="counter-box"><span id="minutes">0</span>دقائق</div>
+            <div class="counter-box"><span id="seconds">0</span>ثواني</div>
         </div>
-    </header>
+    </section>
 
-    <div class="wrapper">
-        
-        <!-- الأقسام / الأزرار الجانبية -->
-        <div class="tabs-menu">
-            <h3>قائمة الأنواع (15 نوع)</h3>
-            <button class="tab-btn active" onclick="openBird(event, 'b1')">1. البادجي الأسترالي</button>
-            <button class="tab-btn" onclick="openBird(event, 'b2')">2. ببغاء الكوكاتيل</button>
-            <button class="tab-btn" onclick="openBird(event, 'b3')">3. الكناري الصداح</button>
-            <button class="tab-btn" onclick="openBird(event, 'b4')">4. عصفور الزيبرا</button>
-            <button class="tab-btn" onclick="openBird(event, 'b5')">5. غولدين فينش</button>
-            <button class="tab-btn" onclick="openBird(event, 'b6')">6. طيور الروز</button>
-            <button class="tab-btn" onclick="openBird(event, 'b7')">7. طيور الفيشر</button>
-            <button class="tab-btn" onclick="openBird(event, 'b8')">8. عصفور جاوة</button>
-            <button class="tab-btn" onclick="openBird(event, 'b9')">9. ببغاء الكاكاريكي</button>
-            <button class="tab-btn" onclick="openBird(event, 'b10')">10. الباركيت الأخضر</button>
-            <button class="tab-btn" onclick="openBird(event, 'b11')">11. كناري الموزايك</button>
-            <button class="tab-btn" onclick="openBird(event, 'b12')">12. طائر الحسون</button>
-            <button class="tab-btn" onclick="openBird(event, 'b13')">13. الكاردينال الأحمر</button>
-            <button class="tab-btn" onclick="openBird(event, 'b14')">14. البنجالي فينش</button>
-            <button class="tab-btn" onclick="openBird(event, 'b15')">15. ببغاء الكويكر</button>
-        </div>
-
-        <!-- لوحة العرض التفاعلية للأقسام -->
-        <div class="display-panel">
-
-            <!-- قسم 1 -->
-            <div id="b1" class="bird-section active">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/56733/pexels-photo-56733.jpeg?auto=compress&w=700" alt="البادجي"></div>
-                <div class="bird-content">
-                    <h2>طائر البادجي الأسترالي</h2>
-                    <p>طائر نشيط جداً وسهل التربية، ويمتاز بفضوله وحبه للعب، وهو الاختيار الأول والمثالي لكل مبتدئ في هذه الهواية لسهولة تفريخه وألوانه المتنوعة.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>خلطة حبوب البنكم والفلارس والدنيبة، والجرجير الطازج</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 5 إلى 9 سنوات في الأقفاص المنزلية</td></tr>
-                    </table>
-                </div>
+    <!-- 3. الخط الزمني والتواريخ -->
+    <section class="timeline-section">
+        <h2 class="timeline-title">محطات مش هنساها 📅</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-date">٢٥ فبراير ٢٠٢٥</div>
+                <h3>أول مرة اتقابلنا 🌸</h3>
+                <p>اليوم اللي الدنيا ضحكتلي فيه وشوفتك لأول مرة، ومن اللحظة دي عرفت إن حياتي هتبقى أحلى بكتير.</p>
             </div>
 
-            <!-- قسم 2 -->
-            <div id="b2" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/2613447/pexels-photo-2613447.jpeg?auto=compress&w=700" alt="الكوكاتيل"></div>
-                <div class="bird-content">
-                    <h2>ببغاء الكوكاتيل الأليف</h2>
-                    <p>يمتاز بالعرف الجميل المتحرك فوق رأسه وبقع الخدود البرتقالية الساحرة. الكوكاتيل طائر ذكي وودود جداً، ويمكن للذكور تعلم تصفير نغمات كاملة وتقليد بعض الكلمات بوضوح.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>بذور عباد الشمس، خلطات الباركيت، والفواكه المجففة</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 10 إلى 15 سنة</td></tr>
-                    </table>
-                </div>
+            <div class="timeline-item">
+                <div class="timeline-date">١٤ مارس ٢٠٢٥</div>
+                <h3>أول كلمة حلوة والاعتراف 🙈</h3>
+                <p>اليوم اللي نبضات قلبي فيه كانت مسموعة من كتر التوتر، واليوم اللي بدأنا فيه نكتب أول السطور في حكايتنا.</p>
             </div>
 
-            <!-- قسم 3 -->
-            <div id="b3" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/4090009/pexels-photo-4090009.jpeg?auto=compress&w=700" alt="الكناري"></div>
-                <div class="bird-content">
-                    <h2>طائر الكناري الصداح</h2>
-                    <p>ملك التغريد العذب بلا منازع. لا يحب الكناري اللمس أو اللعب اليدوي بل يُقتنى أساساً للاستمتاع بمنظره الجذاب وتغريداته الطويلة المنسقة، والذكور هي التي تغرد بشكل أساسي.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>بذور الكناري الخاصة (الفلارس)، البروكلي، والتفاح</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 7 إلى 11 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 4 -->
-            <div id="b4" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/9754124/pexels-photo-9754124.jpeg?auto=compress&w=700" alt="الزيبرا"></div>
-                <div class="bird-content">
-                    <h2>عصفور الزيبرا فينش</h2>
-                    <p>عصافير صغيرة ورشيقة للغاية، لا تتوقف عن الحركة وتصدر زقزقة مستمرة شبيهة بالألعاب اللطيفة. تتميز بإنتاجها السريع جداً وبنائها المستمر للأعشاش بشتى الخامات.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>حبوب البنكم الناعمة، ووجبات البيض المسلوق بالبقسماط</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 3 إلى 5 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 5 -->
-            <div id="b5" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/6152261/pexels-photo-6152261.jpeg?auto=compress&w=700" alt="غولدين فينش"></div>
-                <div class="bird-content">
-                    <h2>طائر غولدين فينش الملون</h2>
-                    <p>يعتبره الكثيرون أجمل طائر زينة في العالم نظراً للوحته الربانية المذهلة وتداخل الألوان الزاهية في ريشه الصغير. هو طائر حساس ويحتاج لعناية فائقة وتجنب تيارات الهواء.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>خلطات الفينش الفاخرة والفيتامينات والمستنبت</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 5 إلى 7 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 6 -->
-            <div id="b6" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/3250454/pexels-photo-3250454.jpeg?auto=compress&w=700" alt="الروز"></div>
-                <div class="bird-content">
-                    <h2>طيور الحب - الروز</h2>
-                    <p>سميت بطيور الحب لشدة ارتباط الزوجين ببعضهما مدى الحياة. تنتمي لفصيلة الببغاوات الصغيرة، وهي طيور ذكية جداً، ولعوبة وعنيدة، وتتعلق بالمربي بشدة لو رُبيت منذ الصغر.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>اللب السوري، حبوب الفلارس والبنكم، والفواكه</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 10 إلى 12 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 7 -->
-            <div id="b7" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/2085859/pexels-photo-2085859.jpeg?auto=compress&w=700" alt="الفيشر"></div>
-                <div class="bird-content">
-                    <h2>طيور الحب - الفيشر</h2>
-                    <p>تتميز بوجود حلقة بيضاء واضحة جداً ومميزة حول العين (الجفن). ألوانها زاهية للغاية تجمع بين الأخضر والبرتقالي والأحمر، وتتمتع بنشاط وقوة جسدية واضحة.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>خلطات الحبوب المشكلة، الفواكه الطازجة، والخضروات</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 9 إلى 13 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 8 -->
-            <div id="b8" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/9310344/pexels-photo-9310344.jpeg?auto=compress&w=700" alt="الجاوة"></div>
-                <div class="bird-content">
-                    <h2>عصفور جاوة الهادئ</h2>
-                    <p>طائر هادئ وكبير الحجم نسبياً مقارنة بعصافير الفينش الأخرى، يمتاز بمنقاره الأحمر الكبير المصقول وخدوده البيضاء الدائرية، وهو منظم جداً داخل الأقفاص.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>الأرز الشعير، بذور الفلارس، وخلطات الفينش الكبيرة</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 5 إلى 8 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 9 -->
-            <div id="b9" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/10360844/pexels-photo-10360844.jpeg?auto=compress&w=700" alt="الكاكاريكي"></div>
-                <div class="bird-content">
-                    <h2>ببغاء الكاكاريكي المضحك</h2>
-                    <p>ببغاء نيوزيلندي الأصل فريد من نوعه، يحب الجري والقفز على أرضية القفص أكثر من الطيران، وله جبهة حمراء مميزة وسلوك فضولي مضحك ومسلي للغاية أثناء الحركة.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>الفواكه، الخضروات، الخيار، والحبوب المشكلة وفير المكونات</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 8 إلى 12 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 10 -->
-            <div id="b10" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&w=700" alt="الباركيت"></div>
-                <div class="bird-content">
-                    <h2>الببغاء الأخضر الصغير (الباركيت)</h2>
-                    <p>طيور خضراء ذكية للغاية تشبه البادجي الأسترالي لكنها أكبر حجماً ولها ذيل طويل، تتمتع بذكاء حاد وقدرة ممتازة على الاختلاط البشري وحب اللعب الدائم بالألعاب.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>الخضروات الورقية، الحبوب المتنوعة، ووجبات الإطعام اللينة</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 10 إلى 15 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 11 -->
-            <div id="b11" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/4090007/pexels-photo-4090007.jpeg?auto=compress&w=700" alt="الموزايك"></div>
-                <div class="bird-content">
-                    <h2>كناري الموزايك الفاخر</h2>
-                    <p>نوع من الكناري يتميز بتوزيع هندسي مذهل للألوان الحمراء أو الصفراء الزاهية على خلفية بيضاء كلوحات الفسيفساء، وهو من الأنواع المفضلة في مسابقات طيور الجمال والزينة.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>أغذية مخصصة للكناري مع محفزات لونية لإبراز الألوان</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 7 إلى 10 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 12 -->
-            <div id="b12" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/11832049/pexels-photo-11832049.jpeg?auto=compress&w=700" alt="الحسون"></div>
-                <div class="bird-content">
-                    <h2>طائر الحسون الأوراسي الجميل</h2>
-                    <p>طائر بري غاية في الجمال والرشاقة، يقتنيه المحترفون لجمال شكله ذو الوجه الأحمر والقناع الجذاب وتغريده الخيالي المتنوع والمتغير باستمرار والذي يذهل المستمعين.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>بذور الشوك الطبيعية، بذور القمبز، والنيجر، والنباتات البرية</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 6 إلى 10 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 13 -->
-            <div id="b13" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/10153032/pexels-photo-10153032.jpeg?auto=compress&w=700" alt="الكاردينال"></div>
-                <div class="bird-content">
-                    <h2>طائر الكاردينال الأحمر الناري</h2>
-                    <p>طائر زينة مذهل يتميز بلونه الأحمر القرمزي الزاهي بالكامل للذكور مع قناع أسود حول العين والمنقار، صوته وتغريده مميزان جداً وشكله يمنح المكان فخامة استثنائية.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>الحبوب الكبيرة، بذور عباد الشمس، التوت، والديدان المجففة</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 8 إلى 13 سنة</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 14 -->
-            <div id="b14" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/2263655/pexels-photo-2263655.jpeg?auto=compress&w=700" alt="البنجالي"></div>
-                <div class="bird-content">
-                    <h2>طائر البنجالي فينش الاجتماعي</h2>
-                    <p>طائر اجتماعي هادئ للغاية ولا يتشاجر مع رفقائه أبداً، يشتهر بكونه الأب البديل في عالم الطيور؛ حيث يستعين به المربون لحضانة وتأكيل فروخ الطيور النادرة لحنانه الشديد.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>حبوب البنكم الناعمة، الفلارس، ووجبات البيض المهروس اللينة</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 4 إلى 6 سنوات</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <!-- قسم 15 -->
-            <div id="b15" class="bird-section">
-                <div class="bird-img"><img src="https://images.pexels.com/photos/4090003/pexels-photo-4090003.jpeg?auto=compress&w=700" alt="الكويكر"></div>
-                <div class="bird-content">
-                    <h2>ببغاء الكويكر (الراهب المتكلم)</h2>
-                    <p>ببغاء متوسط الحجم ذو لون أخضر جذاب وصدر رمادي، ذكي جداً ومشهور بقدرته الفائقة على الكلام وتقليد جمل المربي كاملة، كما أنه يرتبط بأفراد العائلة ويحب اللعب الدائم.</p>
-                    <table class="info-table">
-                        <tr><td class="title">النظام الغذائي:</td><td>الفواكه المشكلة، الخضروات، وخلطات الببغاوات وبذور عباد الشمس</td></tr>
-                        <tr><td class="title">متوسط العمر:</td><td>من 15 إلى 20 سنة</td></tr>
-                    </table>
-                </div>
+            <div class="timeline-item">
+                <div class="timeline-date">١ يونيو ٢٠٢٥</div>
+                <h3>أول خروجة وموقف مضحك 🍕</h3>
+                <p>لما كنا بنأكل وفجأة حصل الموقف اللي فضلنا نضحك عليه طول اليوم.. تفاصيلك الصغيرة هي اللي مخلية قلبي متعلق بيكِ.</p>
             </div>
 
         </div>
+    </section>
 
-    </div>
+    <!-- 4. قسم الإحصائيات الطريفة -->
+    <section class="stats-section">
+        <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <p>كمية الحب والدعم</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">+١٥٠٠</span>
+            <p>ساعة شات ومكالمات</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">١٠٠٪</span>
+            <p>خناقات انتهت بضحك</p>
+        </div>
+    </section>
 
+    <!-- 5. قسم الرسائل المفضلة -->
+    <section class="messages-section">
+        <h2>ماسدجات بنحبها وكلام من القلب 💬</h2>
+        <p style="opacity: 0.7; margin-bottom: 20px;">كلامك دايماً كان بيهون عليا أي حاجة صعبة</p>
+        <div class="messages-grid">
+            
+            <div class="msg-card">
+                <p>"عايزاك دايماً جمبي ومطمنة بوجودك، أنت أحسن حاجة حصلت في حياتي كلها."</p>
+                <span class="msg-author">— رسالة منها شيلتها في قلبي</span>
+            </div>
+
+            <div class="msg-card">
+                <p>"وجودك معايا بيخليني أحس إن العالم كله بخير، ومفيش أي حاجة تقدر تزعلني وأنتِ في ضهري."</p>
+                <span class="msg-author">— رسالة مني ليها</span>
+            </div>
+
+            <div class="msg-card">
+                <p>"لو لفيت الدنيا دي كلها مش هلاقي حد يفهمني من عيني ومن نبرة صوتي زيك أنتِ."</p>
+                <span class="msg-author">— لحظة صفاء وسط اليوم</span >
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. كبسولة الزمن المستقبلية -->
+    <section class="capsule-section">
+        <h2>كبسولة الزمن 🔒</h2>
+        <div class="capsule-card">
+            <span class="lock-icon">🔒</span>
+            <h3>الرسالة السرية</h3>
+            <p id="capsule-text" style="margin-top: 15px; opacity: 0.8; font-style: italic;">الرسالة دي مقفولة دلوقتي.. ومفيش حد هيقدر يفتحها غير يوم عيد ميلادك الجاي عشان تشوفي كنت كاتبلك إيه هنا! 😉</p>
+            <div id="capsule-timer" style="margin-top: 20px; font-weight: bold; color: var(--text-gold);"></div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
     <footer>
-        <p>الموسوعة الكبرى والأقسام التفاعلية لطيور الزينة © 2026</p>
+        صُنع بكل حب بواسطة أحمد لحبيبة قلبه وعالمي كله الأميرة 💖 | ٢٠٢٦
     </footer>
 
-    <!-- الكود البرمجي السحري لتنظيم الأقسام وتبديلها -->
+    <!-- السكريبتات الذكية للعداد وكبسولة الزمن -->
     <script>
-        function openBird(evt, birdId) {
-            // إخفاء كل الأقسام أولاً
-            var i, birdSection, tabBtn;
-            birdSection = document.getElementsByClassName("bird-section");
-            for (i = 0; i < birdSection.length; i++) {
-                birdSection[i].classList.remove("active");
-            }
+        // ١. إعداد تاريخ بداية الارتباط (تعديل الأرقام هنا: السنة، الشهر ناقص ١، اليوم)
+        // مثال: 25 فبراير 2025 -> (2025, 1, 25) لأن شهر يناير هو 0 وفبراير هو 1
+        const startDate = new Date(2025, 1, 25, 0, 0, 0);
 
-            // إزالة اللون الأخضر من الأزرار غير النشطة
-            tabBtn = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tabBtn.length; i++) {
-                tabBtn[i].classList.remove("active");
-            }
+        function updateLoveCounter() {
+            const now = new Date();
+            const difference = now - startDate;
 
-            // إظهار القسم الذي ضغط عليه المربي فقط وتلوين زره باللون النشط
-            document.getElementById(birdId).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
         }
-    </script>
+        setInterval(updateLoveCounter, 1000);
+        updateLoveCounter();
 
+
+        // ٢. إعداد كبسولة الزمن لتاريخ مستقبلي (مثلاً أول السنة الجديدة أو عيد ميلادها)
+        // غير التاريخ ده ليوم عيد ميلادها القادم (سنة، شهر ناقص ١، يوم)
+        const targetFutureDate = new Date(2027, 0, 1, 0, 0, 0); 
+
+        function updateCapsuleTimer() {
+            const now = new Date();
+            const difference = targetFutureDate - now;
+
+            if (difference <= 0) {
+                // الرسالة تفتح تلقائياً لما التاريخ ييجي!
+                document.querySelector('.lock-icon').innerText = "🔓";
+                document.getElementById('capsule-text').innerText = "كل سنة وأنتِ منورة حياتي! هنا حط الرسالة الطويلة اللي نفسك تقرأها في اليوم ده.. أنا بحبك أوي وفخور بكل يوم بنعديه سوا وسند لبعض.";
+                document.getElementById('capsule-timer').style.display = 'none';
+            } else {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('capsule-timer').innerText = `باقي ${days} يوم و ${hours} ساعة على فتح الرسالة!`;
+            }
+        }
+        setInterval(updateCapsuleTimer, 1000);
+        updateCapsuleTimer();
+    </script>
 </body>
 </html>
