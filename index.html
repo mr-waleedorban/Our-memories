@@ -33,6 +33,49 @@
             color: var(--text-dark);
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* أنيميشن القلوب الخلفية الناعمة */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            color: rgba(255, 117, 143, 0.35);
+            font-size: 1.2rem;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-105vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        section, footer {
+            position: relative;
+            z-index: 1;
         }
 
         h1, h2, h3 {
@@ -112,7 +155,7 @@
             margin-bottom: 5px;
         }
 
-        /* قسم تواريخ تهمنا الجديد */
+        /* قسم تواريخ تهمنا */
         .important-dates-section {
             padding: 80px 20px;
             background: rgba(255, 255, 255, 0.6);
@@ -216,6 +259,75 @@
             font-size: 1.1rem;
         }
 
+        /* قسم Our Future Plans التفاعلي */
+        .future-plans-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .plans-toggle-btn {
+            background: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            font-size: 1.2rem;
+            font-family: 'Reem Kufi', sans-serif;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 117, 143, 0.3);
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plans-toggle-btn:hover {
+            background: #ff5277;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(255, 117, 143, 0.4);
+        }
+
+        .plans-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+            opacity: 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .plans-content.active {
+            max-height: 1200px;
+            opacity: 1;
+            margin-top: 40px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            border-bottom: 4px solid var(--accent-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .plan-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
         /* إحصائيات لطيفة */
         .stats-section {
             padding: 60px 20px;
@@ -223,7 +335,6 @@
             justify-content: center;
             gap: 50px;
             flex-wrap: wrap;
-            background: rgba(255, 255, 255, 0.5);
         }
 
         .stat-item {
@@ -334,6 +445,9 @@
 </head>
 <body>
 
+    <!-- القلوب المتطايرة في الخلفية -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
     <!-- 1. شاشة المقدمة -->
     <section class="hero">
         <h1>عالمنا الخاص ✨</h1>
@@ -353,7 +467,7 @@
         </div>
     </section>
 
-    <!-- 3. قسم تواريخ تهمنا (الجديد) -->
+    <!-- 3. قسم تواريخ تهمنا -->
     <section class="important-dates-section">
         <h2>تواريخ تهمنا 📅</h2>
         <p style="color: var(--text-muted); margin-top: 10px;">أيام مميزة غيرت شكل أيامنا</p>
@@ -386,6 +500,12 @@
             </div>
 
             <div class="timeline-item">
+                <div class="timeline-date">٦ نوفمبر ٢٠٢٤</div>
+                <h3>أول اعتراف بالحب من فثعونة لفثعون 💌</h3>
+                <p>اليوم اللطيف اللي أعلنت فيه قلبها واكتملت فيه فرحتي، اليوم اللي كلمة "بحبك" منه غيرت الدنيا كلها في عيني.</p>
+            </div>
+
+            <div class="timeline-item">
                 <div class="timeline-date">٢٥ فبراير ٢٠٢٥</div>
                 <h3>أول مقابلة 🌸</h3>
                 <p>اليوم اللي الدنيا ضحكتلي فيه وشوفتك لأول مرة، ومن اللحظة دي عرفت إن حياتي هتبقى أحلى بكتير.</p>
@@ -400,7 +520,46 @@
         </div>
     </section>
 
-    <!-- 5. قسم الإحصائيات الطريفة -->
+    <!-- 5. قسم Our Future Plans التفاعلي -->
+    <section class="future-plans-section">
+        <button class="plans-toggle-btn" onclick="togglePlans()">
+            <span>Our Future Plans ✨</span>
+            <span id="btnArrow">👇</span>
+        </button>
+
+        <div class="plans-content" id="plansContent">
+            <h3 style="margin-bottom: 25px; color: var(--accent-blue);">أحلامنا اللي بنبنيها سوا يوم بيوم 💍✨</h3>
+            <div class="plans-grid">
+                
+                <div class="plan-card">
+                    <div class="plan-icon">💍👩‍❤️‍👨</div>
+                    <h3 style="color: var(--accent-pink);">الجواز وتجمعنا سوا</h3>
+                    <p style="margin-top: 10px; color: var(--text-muted);">اليوم اللي هنبقى فيه تحت سقف واحد وتبقى حياتنا كلها ملكنا سوا.</p>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-icon">👶👑</div>
+                    <h3 style="color: var(--accent-pink);">ابننا "آسر" وبنتنا "آيلا"</h3>
+                    <p style="margin-top: 10px; color: var(--text-muted);">نكبر عيلتنا الصغنونة ونشوف قطعة مننا تنور حياتنا وعالمنا.</p>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-icon">🏡🌿</div>
+                    <h3 style="color: var(--accent-pink);">بيت مريح على ذوقنا</h3>
+                    <p style="margin-top: 10px; color: var(--text-muted);">نصمم كل ركن فيه بحب وشغف ويبقى ملاذنا الهادي والدافئ.</p>
+                </div>
+
+                <div class="plan-card">
+                    <div class="plan-icon">✈️🌍</div>
+                    <h3 style="color: var(--accent-pink);">نسافر ونخرج سوا</h3>
+                    <p style="margin-top: 10px; color: var(--text-muted);">نلف أماكن جديدة، ونعمل ذكريات جديدة وخروجات ممتعة في كل حتة.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. قسم الإحصائيات الطريفة -->
     <section class="stats-section">
         <div class="stat-item">
             <span class="stat-number">∞</span>
@@ -416,7 +575,7 @@
         </div>
     </section>
 
-    <!-- 6. قسم الرسائل المفضلة -->
+    <!-- 7. قسم الرسائل المفضلة -->
     <section class="messages-section">
         <h2>ماسدجات بنحبها وكلام من القلب 💬</h2>
         <p style="color: var(--text-muted); margin-bottom: 20px;">كلامك دايماً كان بيهون عليا أي حاجة صعبة</p>
@@ -440,7 +599,7 @@
         </div>
     </section>
 
-    <!-- 7. كبسولة الزمن المستقبلية -->
+    <!-- 8. كبسولة الزمن المستقبلية -->
     <section class="capsule-section">
         <h2>كبسولة الزمن 🔒</h2>
         <div class="capsule-card">
@@ -456,10 +615,9 @@
         صُنع بكل حب بواسطة أحمد لحبيبة قلبه وعالمي كله الأميرة 💖 | ٢٠٢٦
     </footer>
 
-    <!-- السكريبتات الذكية للعداد وكبسولة الزمن -->
+    <!-- السكريبتات والتفاعلات -->
     <script>
-        // تاريخ معرفة فثعن وفثعونه المظبوط: 3 أكتوبر 2024
-        // (شهر أكتوبر هو رقم 9 في الجافا سكريبت لأن الترقيم يبدأ من صفر)
+        // تاريخ معرفة فثعن وفثعونه: 3 أكتوبر 2024
         const startDate = new Date(2024, 9, 3, 0, 0, 0);
 
         function updateLoveCounter() {
@@ -479,8 +637,7 @@
         setInterval(updateLoveCounter, 1000);
         updateLoveCounter();
 
-
-        // إعداد كبسولة الزمن لعيد ميلادها القادم (1 يناير 2027)
+        // كبسولة الزمن لعيد ميلادها القادم (1 يناير 2027)
         const targetFutureDate = new Date(2027, 0, 1, 0, 0, 0); 
 
         function updateCapsuleTimer() {
@@ -499,6 +656,40 @@
         }
         setInterval(updateCapsuleTimer, 1000);
         updateCapsuleTimer();
+
+        // فتح وإغلاق قسم Our Future Plans
+        function togglePlans() {
+            const content = document.getElementById('plansContent');
+            const arrow = document.getElementById('btnArrow');
+            content.classList.toggle('active');
+            
+            if (content.classList.contains('active')) {
+                arrow.innerText = '👆';
+            } else {
+                arrow.innerText = '👇';
+            }
+        }
+
+        // توليد أنيميشن القلوب الخلفية الهادئة
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartsSymbols = ['🌸', '🤍', '💖', '✨', '💕'];
+            const count = 15; // عدد القلوب لتظل هادئة وغير مزعجة
+
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerText = heartsSymbols[Math.floor(Math.random() * heartsSymbols.length)];
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (0.9 + Math.random() * 0.8) + 'rem';
+                
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
     </script>
 </body>
 </html>
