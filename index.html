@@ -178,6 +178,49 @@
             margin-bottom: 5px;
         }
 
+        /* عداد التفكير الخاص للطرفين */
+        .thinking-counter-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .thinking-counter-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .thinking-card {
+            background: var(--card-bg);
+            padding: 25px 35px;
+            border-radius: 25px;
+            min-width: 260px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 2px solid var(--accent-pink);
+        }
+
+        .thinking-card.boy {
+            border-color: var(--accent-blue);
+        }
+
+        .thinking-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .thinking-card .count-val {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            font-family: 'Reem Kufi', sans-serif;
+        }
+
+        .thinking-card.boy .count-val {
+            color: var(--accent-blue);
+        }
+
         /* تواريخ تهمنا وعد تنازلي لعيد الميلاد */
         .important-dates-section {
             padding: 80px 20px;
@@ -494,7 +537,7 @@
         <p style="margin-top: 35px; font-size: 1.1rem; color: var(--accent-pink); font-weight: bold;">👇 انزلي تحت وشوفي السحر</p>
     </section>
 
-    <!-- 2. العداد -->
+    <!-- 2. العداد الرئيسي -->
     <section class="counter-section">
         <h2>وقت معرفة فثعن وفثعونه 💕</h2>
         <div class="counter-container">
@@ -505,19 +548,36 @@
         </div>
     </section>
 
+    <!-- عداد التفكير الحقيقي المباشر -->
+    <section class="thinking-counter-section">
+        <h2>عداد التفكير في بعض 💭✨</h2>
+        <div class="thinking-counter-container">
+            <div class="thinking-card">
+                <h3>فثعون فكر في فثعونة 💖</h3>
+                <div class="count-val" id="fathounThinkingCount">0</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">مرة</p>
+            </div>
+            <div class="thinking-card boy">
+                <h3>فثعونة فكرت في فثعون 💙</h3>
+                <div class="count-val" id="fathounaThinkingCount">0</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">مرة</p>
+            </div>
+        </div>
+    </section>
+
     <!-- 3. تواريخ تهمنا (مع عدادات أعياد الميلاد المتبقية) -->
     <section class="important-dates-section">
         <h2>تواريخ تهمنا 📅</h2>
         <div class="dates-container">
             <div class="date-card">
                 <div class="date-icon">🎂👑</div>
-                <h3>عيد ميلاد فثعونه</h3>
+                <h3>عيد ميلاد فثعونة</h3>
                 <div class="date-value">1 / 1 / 2008</div>
                 <div class="bday-countdown-box" id="fathounaBdayCountdown">باقي على عيد ميلادها: ...</div>
             </div>
             <div class="date-card boy">
                 <div class="date-icon">🎂✨</div>
-                <h3>عيد ميلاد فثعن</h3>
+                <h3>عيد ميلاد فثعون</h3>
                 <div class="date-value">8 / 10 / 2008</div>
                 <div class="bday-countdown-box" id="fathounBdayCountdown">باقي على عيد ميلاده: ...</div>
             </div>
@@ -753,10 +813,10 @@
         }
     </script>
 
-    <!-- كود الربط السحابي بـ Firebase + خاصية زرار "بفكر فيك" المباشرة -->
+    <!-- كود الربط السحابي بـ Firebase + خاصية زرار "بفكر فيك" المباشرة وعداد التفكير -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-      import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+      import { getDatabase, ref, push, onValue, set, runTransaction } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyAIU9oi3bkrFiXgTfwAHTSJPyM2VDWCnlw",
@@ -773,7 +833,42 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
 
-      // 2. حفظ الورقة سحابياً
+      // 2. تحديث عدادات التفكير حياً وتلقائياً لجميع الطرفين
+      const thinkingCountsRef = ref(db, 'thinking_counts');
+      onValue(thinkingCountsRef, (snapshot) => {
+          const counts = snapshot.val() || {};
+          document.getElementById('fathounThinkingCount').innerText = counts.fathoun || 0;
+          document.getElementById('fathounaThinkingCount').innerText = counts.fathouna || 0;
+      });
+
+      // 3. زيادة العداد وإطلاق الإشعار المباشر عند الضغط على "بفكر فيك/فيكي"
+      document.getElementById('thinkingBtn').addEventListener('click', () => {
+          const isFathoun = window.currentUser === 'فثعون';
+          const targetKey = isFathoun ? 'fathoun' : 'fathouna';
+          const countRef = ref(db, `thinking_counts/${targetKey}`);
+
+          // زيادة العداد سحابياً ببطء ودقة (Transaction)
+          runTransaction(countRef, (currentCount) => {
+              return (currentCount || 0) + 1;
+          });
+
+          // تجهيز وتحديث نافذة العرض
+          const modal = document.getElementById('thinkingModal');
+          const title = document.getElementById('thinkingTitle');
+          const msg = document.getElementById('thinkingMessage');
+
+          if (isFathoun) {
+              title.innerText = "إشعار تفكير! 💭✨";
+              msg.innerText = "فثعون بيفكر فيكي دلوقتي! 💖";
+          } else {
+              title.innerText = "إشعار تفكير! 💭✨";
+              msg.innerText = "فثعونة بتفكر فيك دلوقتي! 💙";
+          }
+
+          modal.classList.add('active');
+      });
+
+      // 4. حفظ الورقة سحابياً
       document.getElementById('saveNoteBtn').addEventListener('click', () => {
           const textarea = document.getElementById('jarInputText');
           const text = textarea.value.trim();
@@ -795,7 +890,7 @@
           });
       });
 
-      // 3. سحب ورقة من السحابة
+      // 5. سحب ورقة من السحابة
       document.getElementById('drawNoteBtn').addEventListener('click', () => {
           const messagesRef = ref(db, 'jar_messages');
           
@@ -811,44 +906,13 @@
                       document.getElementById('drawnMessageMeta').innerText = `— كُتبت بواسطة ${randomMsg.sender}`;
                       document.getElementById('drawnMessageCard').style.display = 'block';
                   } else {
-                      alert("مفيش رسايل جديدة في البرطمان من الطرف التاني لسه! 🫙");
+                      alert("البرطمان فاضي حالياً من رسايل الطرف التاني! خليه/خليها يكتب ورقة الأول 😉");
                   }
               } else {
-                  alert("البرطمان فاضي لسه على السحابة! 🫙");
+                  alert("البرطمان فاضي تماماً لسّه! اكتبوا رسايل وحطوها فيه ✨");
               }
           }, { onlyOnce: true });
       });
-
-      // 4. خاصية زرار "بفكر فيك" المباشرة عبر الفايربيز
-      const thinkingRef = ref(db, 'thinking_status');
-
-      document.getElementById('thinkingBtn').addEventListener('click', () => {
-          const senderName = window.currentUser;
-          const targetText = senderName === 'فثعون' ? 'فثعن بيفكر فيكي دلوقتي! ❤️✨' : 'فثعونة بتفكر فيك دلوقتي! 💕✨';
-          
-          set(thinkingRef, {
-              sender: senderName,
-              message: targetText,
-              timestamp: Date.now()
-          }).then(() => {
-              alert("اتبعت الإشعار بنجاح للطرف التاني! 💌");
-          });
-      });
-
-      // الاستماع السحابي اللحظي للإشعار وإظهاره فوراً
-      let lastTimestamp = 0;
-      onValue(thinkingRef, (snapshot) => {
-          const data = snapshot.val();
-          if (data && data.timestamp > lastTimestamp) {
-              if (lastTimestamp !== 0 && data.sender !== window.currentUser) {
-                  document.getElementById('thinkingTitle').innerText = `إشعار من ${data.sender} 💕`;
-                  document.getElementById('thinkingMessage').innerText = data.message;
-                  document.getElementById('thinkingModal').classList.add('active');
-              }
-              lastTimestamp = data.timestamp;
-          }
-      });
     </script>
-
 </body>
 </html>
