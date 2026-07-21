@@ -18,6 +18,19 @@
             --text-dark: #3d3d3d;
             --text-muted: #7d7d7d;
             --text-gold: #d4a373;
+            --shadow-color: rgba(112, 145, 230, 0.1);
+        }
+
+        /* المود الليلي السحري */
+        body.dark-theme {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: #1e293b;
+            --accent-pink: #ff8fa3;
+            --accent-blue: #93c5fd;
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-gold: #fde047;
+            --shadow-color: rgba(0, 0, 0, 0.4);
         }
 
         * {
@@ -25,6 +38,7 @@
             margin: 0;
             padding: 0;
             scroll-behavior: smooth;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         body {
@@ -36,6 +50,7 @@
             position: relative;
         }
 
+        /* القلوب العائمة السيمبل */
         .hearts-container {
             position: fixed;
             top: 0;
@@ -45,6 +60,52 @@
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
+        }
+
+        .simple-heart {
+            position: absolute;
+            bottom: -20px;
+            color: var(--accent-pink);
+            opacity: 0.35;
+            font-size: 1rem;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+        }
+
+        /* زر المود النهاري/الليلي وزر التفيكر العائمين */
+        .floating-controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: var(--card-bg);
+            color: var(--text-dark);
+            border: 2px solid var(--accent-pink);
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
         }
 
         section, footer {
@@ -103,7 +164,7 @@
             padding: 25px;
             border-radius: 20px;
             min-width: 120px;
-            box-shadow: 0 10px 30px rgba(112, 145, 230, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-color);
             border: 1px solid rgba(112, 145, 230, 0.15);
             animation: float 4s ease-in-out infinite alternate;
         }
@@ -117,10 +178,10 @@
             margin-bottom: 5px;
         }
 
-        /* تواريخ تهمنا */
+        /* تواريخ تهمنا وعد تنازلي لعيد الميلاد */
         .important-dates-section {
             padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             text-align: center;
         }
@@ -138,8 +199,8 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 20px;
-            width: 280px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            width: 320px;
+            box-shadow: 0 10px 25px var(--shadow-color);
             border-top: 5px solid var(--accent-pink);
         }
 
@@ -151,10 +212,20 @@
         .date-value {
             font-size: 1.3rem;
             font-weight: bold;
-            background: #f7f9fc;
+            background: rgba(112, 145, 230, 0.1);
             padding: 5px 15px;
             border-radius: 50px;
             display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .bday-countdown-box {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--accent-pink);
+            background: rgba(255, 117, 143, 0.1);
+            padding: 10px;
+            border-radius: 12px;
         }
 
         /* الخط الزمني */
@@ -179,7 +250,7 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+            box-shadow: 0 8px 25px var(--shadow-color);
         }
 
         .timeline-item::after {
@@ -193,7 +264,7 @@
         .timeline-date { color: var(--accent-blue); font-weight: bold; margin-bottom: 12px; }
 
         /* Future Plans */
-        .future-plans-section { padding: 80px 20px; text-align: center; background: rgba(255, 255, 255, 0.5); }
+        .future-plans-section { padding: 80px 20px; text-align: center; background: rgba(255, 255, 255, 0.03); }
         .plans-toggle-btn {
             background: var(--accent-pink);
             color: white;
@@ -221,14 +292,15 @@
         .plans-content.active { max-height: 1200px; opacity: 1; margin-top: 40px; }
 
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .plan-card { background: var(--card-bg); padding: 30px 20px; border-radius: 20px; border-bottom: 4px solid var(--accent-blue); }
+        .plan-card { background: var(--card-bg); padding: 30px 20px; border-radius: 20px; border-bottom: 4px solid var(--accent-blue); box-shadow: 0 5px 15px var(--shadow-color); }
 
         /* اتصلي بـ فثعون */
-        .call-fathoun-section { padding: 90px 20px; text-align: center; background: rgba(255, 255, 255, 0.7); }
+        .call-fathoun-section { padding: 90px 20px; text-align: center; background: rgba(255, 255, 255, 0.05); }
         .mood-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
         .mood-btn {
             background: var(--card-bg);
             border: 2px solid var(--accent-pink);
+            color: var(--text-dark);
             padding: 14px 28px;
             border-radius: 50px;
             font-size: 1.1rem;
@@ -245,6 +317,7 @@
             border-left: 6px solid var(--accent-blue);
             display: none;
             text-align: right;
+            box-shadow: 0 10px 25px var(--shadow-color);
         }
 
         /* برطمان الرسائل */
@@ -255,13 +328,14 @@
             margin: 30px auto;
             padding: 40px 30px;
             border-radius: 30px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.04);
+            box-shadow: 0 12px 35px var(--shadow-color);
             border: 1px solid rgba(255, 117, 143, 0.2);
         }
 
         .user-selector { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; }
         .user-btn {
-            background: #f0f4ff;
+            background: rgba(112, 145, 230, 0.1);
+            color: var(--text-dark);
             border: none;
             padding: 10px 22px;
             border-radius: 50px;
@@ -276,7 +350,9 @@
             height: 100px;
             padding: 15px;
             border-radius: 15px;
-            border: 2px solid #e2e8f0;
+            border: 2px solid rgba(112, 145, 230, 0.3);
+            background: var(--card-bg);
+            color: var(--text-dark);
             font-size: 1rem;
             resize: none;
             outline: none;
@@ -297,6 +373,7 @@
 
         .drawn-message-card {
             background: #fff9db;
+            color: #3d3d3d;
             border-radius: 15px;
             padding: 20px;
             margin-top: 20px;
@@ -314,16 +391,100 @@
             padding: 40px;
             border-radius: 25px;
             border: 2px dashed var(--accent-pink);
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+
+        /* نافذة التفكير الشيك والمبهرة (Thinking Pop-up) */
+        .thinking-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .thinking-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .thinking-modal-card {
+            background: var(--card-bg);
+            border: 3px solid var(--accent-pink);
+            padding: 40px 30px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(255, 117, 143, 0.4);
+            transform: scale(0.7);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .thinking-modal-overlay.active .thinking-modal-card {
+            transform: scale(1);
+        }
+
+        .thinking-modal-card h2 {
+            font-size: 2.2rem;
+            margin-top: 15px;
+            color: var(--accent-pink);
+        }
+
+        .thinking-modal-card p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .thinking-close-btn {
+            background: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 25px;
+            cursor: pointer;
         }
 
         @keyframes fadeInScene { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes float { 0% { transform: translateY(0px); } 100% { transform: translateY(-8px); } }
 
-        footer { padding: 40px; text-align: center; color: var(--text-muted); background: #ffffff; }
+        footer { padding: 40px; text-align: center; color: var(--text-muted); background: var(--card-bg); }
     </style>
 </head>
 <body>
 
+    <!-- أزرار التحكم العائمة (المود + بفكر فيك) -->
+    <div class="floating-controls">
+        <button class="control-btn" id="thinkingBtn">💭 بفكر فيك/فيكي</button>
+        <button class="control-btn" onclick="toggleTheme()" id="themeBtn">🌙 المود الليلي</button>
+    </div>
+
+    <!-- نافذة الإشعار الشيك لمسدج التفيكر -->
+    <div class="thinking-modal-overlay" id="thinkingModal">
+        <div class="thinking-modal-card">
+            <span style="font-size: 4.5rem; display: block; animation: float 2s infinite alternate;">💖✨</span>
+            <h2 id="thinkingTitle">إشعار حب!</h2>
+            <p id="thinkingMessage">فثعن بيفكر فيكي دلوقتي!</p>
+            <button class="thinking-close-btn" onclick="closeThinkingModal()">بحبه/بحبها أوي ❤️</button>
+        </div>
+    </div>
+
+    <!-- القلوب العائمة السيمبل -->
     <div class="hearts-container" id="heartsContainer"></div>
 
     <!-- 1. المقدمة -->
@@ -344,7 +505,7 @@
         </div>
     </section>
 
-    <!-- 3. تواريخ تهمنا -->
+    <!-- 3. تواريخ تهمنا (مع عدادات أعياد الميلاد المتبقية) -->
     <section class="important-dates-section">
         <h2>تواريخ تهمنا 📅</h2>
         <div class="dates-container">
@@ -352,11 +513,13 @@
                 <div class="date-icon">🎂👑</div>
                 <h3>عيد ميلاد فثعونه</h3>
                 <div class="date-value">1 / 1 / 2008</div>
+                <div class="bday-countdown-box" id="fathounaBdayCountdown">باقي على عيد ميلادها: ...</div>
             </div>
             <div class="date-card boy">
                 <div class="date-icon">🎂✨</div>
                 <h3>عيد ميلاد فثعن</h3>
                 <div class="date-value">8 / 10 / 2008</div>
+                <div class="bday-countdown-box" id="fathounBdayCountdown">باقي على عيد ميلاده: ...</div>
             </div>
         </div>
     </section>
@@ -398,22 +561,22 @@
             <h3 style="margin-bottom: 25px; color: var(--accent-blue);">أحلامنا اللي بنبنيها سوا يوم بيوم 💍✨</h3>
             <div class="plans-grid">
                 <div class="plan-card">
-                    <div class="plan-icon">💍👩‍❤️‍👨</div>
+                    <div class="plan-icon" style="font-size:2rem; margin-bottom:10px;">💍👩‍❤️‍👨</div>
                     <h3 style="color: var(--accent-pink);">الجواز وتجمعنا سوا</h3>
                     <p style="margin-top: 10px; color: var(--text-muted);">اليوم اللي هنبقى فيه تحت سقف واحد وتبقى حياتنا كلها ملكنا سوا.</p>
                 </div>
                 <div class="plan-card">
-                    <div class="plan-icon">👶👑</div>
+                    <div class="plan-icon" style="font-size:2rem; margin-bottom:10px;">👶👑</div>
                     <h3 style="color: var(--accent-pink);">ابننا "آسر" وبنتنا "آيلا"</h3>
                     <p style="margin-top: 10px; color: var(--text-muted);">نكبر عيلتنا الصغنونة ونشوف قطعة مننا تنور حياتنا وعالمنا.</p>
                 </div>
                 <div class="plan-card">
-                    <div class="plan-icon">🏡🌿</div>
+                    <div class="plan-icon" style="font-size:2rem; margin-bottom:10px;">🏡🌿</div>
                     <h3 style="color: var(--accent-pink);">بيت مريح على ذوقنا</h3>
                     <p style="margin-top: 10px; color: var(--text-muted);">نصمم كل ركن فيه بحب وشغف ويبقى ملاذنا الهادي والدافئ.</p>
                 </div>
                 <div class="plan-card">
-                    <div class="plan-icon">✈️🌍</div>
+                    <div class="plan-icon" style="font-size:2rem; margin-bottom:10px;">✈️🌍</div>
                     <h3 style="color: var(--accent-pink);">نسافر ونخرج سوا</h3>
                     <p style="margin-top: 10px; color: var(--text-muted);">نلف أماكن جديدة، ونعمل ذكريات جديدة وخروجات ممتعة في كل حتة.</p>
                 </div>
@@ -450,7 +613,7 @@
                 <button class="add-note-btn" id="saveNoteBtn">حطي الورقة في البرطمان 💌</button>
             </div>
 
-            <div class="jar-display-area" style="margin-top: 25px; border-top: 2px dashed #f0f4ff; padding-top: 25px;">
+            <div class="jar-display-area" style="margin-top: 25px; border-top: 2px dashed rgba(112, 145, 230, 0.2); padding-top: 25px;">
                 <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 0.95rem;">دوسوا على البرطمان عشان تسحبوا ورقة سحرية:</p>
                 <button class="jar-icon-btn" id="drawNoteBtn">🫙</button>
 
@@ -479,7 +642,31 @@
 
     <!-- الأكواد البرمجية العامة -->
     <script>
-        // عداد الوقت
+        // 1. القلوب العائمة السيمبل
+        function createSimpleHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['❤️', '💖', '🌸', '✨'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'simple-heart';
+                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createSimpleHearts();
+
+        // 2. المود النهاري والليلي
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            document.getElementById('themeBtn').innerText = isDark ? '☀️ المود النهاري' : '🌙 المود الليلي';
+        }
+
+        // 3. عداد وقت المعرفة الرئيسي
         const startDate = new Date(2024, 9, 3, 0, 0, 0);
         function updateLoveCounter() {
             const now = new Date();
@@ -492,7 +679,34 @@
         setInterval(updateLoveCounter, 1000);
         updateLoveCounter();
 
-        // كبسولة الزمن
+        // 4. عدادات أعياد الميلاد التنازلية
+        function updateBirthdayCountdowns() {
+            const now = new Date();
+            
+            // عيد ميلاد فثعونة (1 يناير)
+            let nextFathounaBday = new Date(now.getFullYear(), 0, 1);
+            if (now > nextFathounaBday) nextFathounaBday.setFullYear(now.getFullYear() + 1);
+            
+            const diffFathouna = nextFathounaBday - now;
+            const daysF = Math.floor(diffFathouna / (1000 * 60 * 60 * 24));
+            const hoursF = Math.floor((diffFathouna % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minsF = Math.floor((diffFathouna % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('fathounaBdayCountdown').innerText = `باقي ${daysF} يوم و ${hoursF} ساعة و ${minsF} دقيقة 🎉`;
+
+            // عيد ميلاد فثعون (8 أكتوبر)
+            let nextFathounBday = new Date(now.getFullYear(), 9, 8);
+            if (now > nextFathounBday) nextFathounBday.setFullYear(now.getFullYear() + 1);
+
+            const diffFathoun = nextFathounBday - now;
+            const daysM = Math.floor(diffFathoun / (1000 * 60 * 60 * 24));
+            const hoursM = Math.floor((diffFathoun % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minsM = Math.floor((diffFathoun % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('fathounBdayCountdown').innerText = `باقي ${daysM} يوم و ${hoursM} ساعة و ${minsM} دقيقة 🎈`;
+        }
+        setInterval(updateBirthdayCountdowns, 1000);
+        updateBirthdayCountdowns();
+
+        // 5. كبسولة الزمن
         const targetFutureDate = new Date(2027, 0, 1, 0, 0, 0);
         function updateCapsuleTimer() {
             const now = new Date();
@@ -533,12 +747,16 @@
             document.getElementById('btnUserFathoun').classList.toggle('active', user === 'فثعون');
             document.getElementById('jarInputText').placeholder = user === 'فثعونة' ? "اكتبي ورقة جديدة لفثعون وحطيها جوه البرطمان..." : "اكتب ورقة جديدة لفثعونة وحطها جوه البرطمان...";
         }
+
+        function closeThinkingModal() {
+            document.getElementById('thinkingModal').classList.remove('active');
+        }
     </script>
 
-    <!-- كود الربط السحابي بـ Firebase دمج كامل وتلقائي -->
+    <!-- كود الربط السحابي بـ Firebase + خاصية زرار "بفكر فيك" المباشرة -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-      import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
+      import { getDatabase, ref, push, onValue, set } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-database.js";
 
       const firebaseConfig = {
         apiKey: "AIzaSyAIU9oi3bkrFiXgTfwAHTSJPyM2VDWCnlw",
@@ -555,7 +773,7 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
 
-      // 2. دالة حفظ الورقة سحابياً عند الضغط على الزرار
+      // 2. حفظ الورقة سحابياً
       document.getElementById('saveNoteBtn').addEventListener('click', () => {
           const textarea = document.getElementById('jarInputText');
           const text = textarea.value.trim();
@@ -577,7 +795,7 @@
           });
       });
 
-      // 3. دالة سحب ورقة من السحابة عند الضغط على صورة البرطمان
+      // 3. سحب ورقة من السحابة
       document.getElementById('drawNoteBtn').addEventListener('click', () => {
           const messagesRef = ref(db, 'jar_messages');
           
@@ -585,7 +803,6 @@
               const data = snapshot.val();
               if (data) {
                   const allMessages = Object.values(data);
-                  // إحضار ورقة الشخص الآخر فقط
                   const otherUserMessages = allMessages.filter(msg => msg.sender !== window.currentUser);
 
                   if (otherUserMessages.length > 0) {
@@ -600,6 +817,36 @@
                   alert("البرطمان فاضي لسه على السحابة! 🫙");
               }
           }, { onlyOnce: true });
+      });
+
+      // 4. خاصية زرار "بفكر فيك" المباشرة عبر الفايربيز
+      const thinkingRef = ref(db, 'thinking_status');
+
+      document.getElementById('thinkingBtn').addEventListener('click', () => {
+          const senderName = window.currentUser;
+          const targetText = senderName === 'فثعون' ? 'فثعن بيفكر فيكي دلوقتي! ❤️✨' : 'فثعونة بتفكر فيك دلوقتي! 💕✨';
+          
+          set(thinkingRef, {
+              sender: senderName,
+              message: targetText,
+              timestamp: Date.now()
+          }).then(() => {
+              alert("اتبعت الإشعار بنجاح للطرف التاني! 💌");
+          });
+      });
+
+      // الاستماع السحابي اللحظي للإشعار وإظهاره فوراً
+      let lastTimestamp = 0;
+      onValue(thinkingRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data && data.timestamp > lastTimestamp) {
+              if (lastTimestamp !== 0 && data.sender !== window.currentUser) {
+                  document.getElementById('thinkingTitle').innerText = `إشعار من ${data.sender} 💕`;
+                  document.getElementById('thinkingMessage').innerText = data.message;
+                  document.getElementById('thinkingModal').classList.add('active');
+              }
+              lastTimestamp = data.timestamp;
+          }
       });
     </script>
 
